@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "resolveJsonModule": true,
+      "target": "esnext",
+      "module": "commonjs",
+      "sourceMap": true,
+      "outDir": "./build",
+      "rootDir": "./",
+      "strict": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true
+    }
+  }
