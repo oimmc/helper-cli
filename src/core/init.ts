@@ -23,12 +23,10 @@ const init = (projectName: string) => {
                 default: true
             }
         ]).then(async answers => {
-            // console.log(`\n${JSON.stringify(answers,  null, '\t')}\n`)
+            console.log(`\n${JSON.stringify(answers,  null, '\t')}\n`)
 
-            // let repo = answers.typescript ? 'wangyajundev/fe-helper' : 'wangyajundev/fe-webpack4-vue'
-            // let repo = answers.typescript ? 'wangyajundev/helper-cli/tree/master/src/templates/fe-helper' : 'wangyajundev/fe-webpack4-vue'
-            let repo = answers.typescript ? 'wangyajundev/helper-cli/tree/master/src/templates/fe-helper' : 'wangyajundev/fe-webpack4-vue'
-            let loading = ora(`downloading template[https://github.com/${repo}] \n`)
+            let repo = answers.typescript ? 'wangyajundev/fe-helper#develop' : 'wangyajundev/fe-helper#master'
+            let loading = ora(`downloading template[https://github.com/${repo}]\n`)
             loading.start()
             loading.color = 'yellow'
 
@@ -44,14 +42,9 @@ const init = (projectName: string) => {
                         json.author = answers.author
                         json.description = answers.description
 
-                        fs.writeFileSync(
-                            pkg,
-                            JSON.stringify(json, null, '\t'),
-                            'utf-8'
-                        )
+                        fs.writeFileSync(pkg, JSON.stringify(json, null, '\t'), 'utf-8')
 
                         console.log(symbol.success, chalk.green('Completed !\n'))
-
                         console.log(`    cd ${projectName}\n`)
                         console.log('    npm install\n')
                         console.log('    npm start\n')
