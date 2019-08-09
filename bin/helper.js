@@ -11,7 +11,7 @@ program
     .alias('i')
     .description('init a new project')
     .action((name) => {
-        require('../build/lib/init')(name)
+        require('../build/init')(name)
     })
 
 
