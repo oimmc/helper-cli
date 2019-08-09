@@ -1,6 +1,6 @@
 {
   "name": "helper-cli",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "helper-cli",
   "main": "index.js",
   "bin": {
@@ -21,7 +21,14 @@
   ],
   "author": "wangyajundev",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "download-git-repo": "^2.0.0",
+    "fs": "^0.0.1-security",
+    "inquirer": "^6.5.0",
+    "ora": "^3.4.0",
+    "path": "^0.12.7",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
@@ -33,14 +40,5 @@
     "babel-preset-env": "^1.7.0",
     "log-symbols": "^3.0.0",
     "typescript": "^3.5.3"
-  },
-  "dependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.20.0",
-    "download-git-repo": "^2.0.0",
-    "fs": "^0.0.1-security",
-    "inquirer": "^6.5.0",
-    "ora": "^3.4.0",
-    "path": "^0.12.7"
   }
 }
