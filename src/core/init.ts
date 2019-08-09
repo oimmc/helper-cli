@@ -26,7 +26,8 @@ const init = (projectName: string) => {
             // console.log(`\n${JSON.stringify(answers,  null, '\t')}\n`)
 
             // let repo = answers.typescript ? 'wangyajundev/fe-helper' : 'wangyajundev/fe-webpack4-vue'
-            let repo = answers.typescript ? '/wangyajundev/helper-cli/blob/master/src/templates/fe-helper' : 'wangyajundev/fe-webpack4-vue'
+            // let repo = answers.typescript ? 'wangyajundev/helper-cli/tree/master/src/templates/fe-helper' : 'wangyajundev/fe-webpack4-vue'
+            let repo = answers.typescript ? 'wangyajundev/helper-cli/tree/master/src/templates/fe-helper' : 'wangyajundev/fe-webpack4-vue'
             let loading = ora(`downloading template[https://github.com/${repo}] \n`)
             loading.start()
             loading.color = 'yellow'
