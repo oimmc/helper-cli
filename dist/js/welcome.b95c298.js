@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{377:function(e,t,n){"use strict";n.r(t);var l={name:"Welcome"},o=n(99),a=Object(o.a)(l,function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"welcome"},[n("h3",[e._v("welcome")]),e._v(" "),n("router-link",{attrs:{to:"/login"}},[e._v("login")])],1)},[],!1,null,"5e5313a8",null);t.default=a.exports}}]);
-//# sourceMappingURL=welcome.b95c298.js.map

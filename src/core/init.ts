@@ -25,7 +25,7 @@ const init = (projectName: string) => {
         ]).then(async answers => {
             console.log(`\n${JSON.stringify(answers,  null, '\t')}\n`)
 
-            let repo = answers.typescript ? 'wangyajundev/fe-helper#develop' : 'wangyajundev/fe-helper#master'
+            let repo = answers.typescript ? 'wangyajundev/helper-cli#template-vue-ts' : 'wangyajundev/helper-cli#template-vue'
             let loading = ora(`downloading template[https://github.com/${repo}]\n`)
             loading.start()
             loading.color = 'yellow'

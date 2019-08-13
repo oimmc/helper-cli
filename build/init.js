@@ -43,7 +43,7 @@ var init = function init(projectName) {
           switch (_context.prev = _context.next) {
             case 0:
               console.log("\n".concat(JSON.stringify(answers, null, '\t'), "\n"));
-              repo = answers.typescript ? 'wangyajundev/fe-helper#develop' : 'wangyajundev/fe-helper#master';
+              repo = answers.typescript ? 'wangyajundev/helper-cli#template-vue-ts' : 'wangyajundev/helper-cli#template-vue';
               loading = (0, _ora["default"])("downloading template[https://github.com/".concat(repo, "]\n"));
               loading.start();
               loading.color = 'yellow';

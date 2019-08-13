@@ -1,6 +1,6 @@
 {
   "name": "helper-cli",
-  "version": "1.0.7",
+  "version": "1.0.72",
   "description": "helper-cli",
   "main": "index.js",
   "bin": {
