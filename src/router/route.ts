@@ -1,26 +1,23 @@
 import Vue, { AsyncComponent } from 'vue'
 import Router, { RouteConfig } from 'vue-router'
 
-const Welcome: AsyncComponent = (): any => import(/* webpackChunkName: 'welcome' */ '../components/Welcome.vue')
+const Hello: AsyncComponent = (): any => import(/* webpackChunkName: 'welcome' */ '../components/Hello.vue')
 const Home: AsyncComponent = (): any => import(/* webpackChunkName: 'home' */ '../views/Home.vue')
-// const Login: AsyncComponent = (): any => import(/* webpackChunkName: 'Login' */ '../views/Login.vue')
-const Login: AsyncComponent = (): any => import(/* webpackChunkName: 'LoginDecorator' */ '../views/LoginDecorator.vue')
 
 Vue.use(Router)
 
 const routes: RouteConfig[] = [{
 	path: '/',
-	redirect: '/welcome'
+	redirect: '/hello'
 }, {
-	path: '/welcome',
-	name: 'welcome',
+	path: '/hello',
+	name: 'hello',
 	meta: {
-		title: 'Welcome',
+		title: 'hello',
 		requiresAuth: false
 	},
 	/* eslint-disable-next-line */
-	// component: () => import(/* webpackChunkName: 'welcome' */ '../components/Welcome.vue')
-	component: Welcome
+	component: Hello
 }, {
 	path: '/home',
 	name: 'home',
@@ -29,14 +26,6 @@ const routes: RouteConfig[] = [{
 		requiresAuth: false
 	},
 	component: Home
-}, {
-	path: '/login',
-	name: 'login',
-	meta: {
-		title: 'Login',
-		requiresAuth: false
-	},
-	component: Login
 }]
 
 export default routes
