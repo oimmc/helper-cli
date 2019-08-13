@@ -1,23 +1,23 @@
-import axios from 'axios'
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
 // import qs from 'qs'
-import config from './config.js'
-// import main from '../../../main' //引用第三方库，node_modules可能会报错
+import config from './config'
+// import main from '../../../main'
 import Cookies from 'cookies-js'
 
-const instance = axios.create({
+const instance: AxiosInstance = axios.create({
 	baseURL: config.baseURL,
 	headers: config.headers,
-	transformResponse: [function (data) {}]
+	transformResponse: [function (data: any) { }]
 })
 
 instance.interceptors.request.use(
-	config => {
+	(config: AxiosRequestConfig) => {
 		// if (config.method.toLocaleLowerCase() === 'post' || config.method.toLocaleLowerCase() === 'put' || config.method.toLocaleLowerCase() === 'delete') {
 		// 	config.data = qs.stringify(config.data)
 		// }
 		return config
 	},
-	error => {
+	(error: any) => {
 		if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
 			// console.log('请求超时！')
 			// return
@@ -35,7 +35,7 @@ instance.interceptors.request.use(
 )
 
 instance.interceptors.response.use(
-	response => {
+	(response: AxiosResponse) => {
 		let data
 		if (response.data === undefined) { // IE9
 			data = response.request.responseText
@@ -57,7 +57,7 @@ instance.interceptors.response.use(
 		// throw err
 		return data
 	},
-	err => {
+	(err: any) => {
 		if (err && err.response) {
 			switch (err.response.status) {
 				case 400:

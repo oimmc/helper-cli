@@ -23,14 +23,18 @@ switch (process.env.NODE_ENV) {
         break
     default:
         baseUrl = ''
-        break;
+        break
 }
 
 module.exports = merge(baseConfig, {
     mode: 'production',
-    devtool: 'source-map',
+	devtool: 'source-map',
+	stats: 'errors-only',
+	performance: {
+		hints: false
+	},
     entry: {
-        index: ['babel-polyfill', './src/main.js']
+        index: ['babel-polyfill', './src/main.ts']
     },
     output: {
         publicPath: baseUrl,
@@ -53,8 +57,8 @@ module.exports = merge(baseConfig, {
                 'css-loader'
             ]
         }, {
-            test:/\.less$/,
-            use:[
+            test: /\.less$/,
+            use: [
                 MiniCssExtractPlugin.loader,
                 'css-loader',
                 'postcss-loader',
@@ -67,18 +71,21 @@ module.exports = merge(baseConfig, {
             name: entrypoint => `runtimechunk~${entrypoint.name}`
         },
         splitChunks: {
+			chunks: 'all',
             cacheGroups: {
                 vendors: {
                     name: 'chunk-vendors',
+                    // eslint-disable-next-line no-useless-escape
                     test: /[\\\/]node_modules[\\\/]/,
+                    // test: /(vue|vue-router)/,
                     priority: -10,
-                    chunks: 'initial'
+                    chunks: 'all'
                 },
                 common: {
                     name: 'chunk-common',
-                    minChunks: 2,
+                    minChunks: 2, // 同一文件被引用2次
                     priority: -20,
-                    chunks: 'initial',
+                    chunks: 'all',
                     reuseExistingChunk: true
                 }
             }
@@ -90,8 +97,7 @@ module.exports = merge(baseConfig, {
                 uglifyOptions: {
                     ecma: 6,
                     cache: true,
-                    parallel: true,
-                    cache: true
+                    parallel: true
                 }
             })
         ]
@@ -99,8 +105,8 @@ module.exports = merge(baseConfig, {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash:7].css',
-            chunkFilename: 'css/[name].[hash:7].css'
+            filename: 'css/[name].[contenthash].css',
+            chunkFilename: 'css/[name].[contenthash].css'
         }),
         new FriendlyErrorsWebpackPlugin(),
         new CopyWebpackPlugin([{

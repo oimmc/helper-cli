@@ -6,7 +6,7 @@ const EslintFriendlyFormatter = require('eslint-friendly-formatter')
 
 module.exports = {
     entry: {
-        index: './src/main.js'
+        index: './src/main.ts'
     },
     output: {
         // publicPath: 'dist',
@@ -14,15 +14,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.ts', '.vue', '.json'],
         alias: {
             // vue: 'vue/dist/vue.js',
-            assets: path.join(__dirname, 'src/assets')
+            'vue$': 'vue/dist/vue.esm.js',
+            '@assets': path.join(__dirname, 'src/assets')
         }
     },
     module: {
         rules: [{
-            test: /\.(js|vue|jsx)$/,
+            test: /\.(js)$/,
             loader: 'eslint-loader',
             enforce: 'pre',
             include: [path.resolve(__dirname, 'src')],
@@ -30,25 +31,32 @@ module.exports = {
                 formatter: EslintFriendlyFormatter
             }
         }, {
-            test: /\.js|jsx$/,
+            test: /\.(js)$/,
             loader: 'babel-loader',
             include: [path.join(__dirname, 'src')],
             exclude: [path.join(__dirname, 'node_modules')]
-            // options: {
-            //     babelrc: false,
-            //     plugins: [
-            //         'babel-plugin-syntax-dynamic-import'
-            //     ]
-            // }
-        }, {
-            test: /\.vue$/,
-            use: 'vue-loader'
-        }, {
-            enforce: 'pre',
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader'
-        }, {
+		}, {
+			test: /\.vue$/,
+			loader: 'vue-loader',
+			options: { /* ... */ }
+		}, {
+			test: /\.(ts)?$/,
+			exclude: /node_modules/,
+			use: [{
+				loader: 'ts-loader',
+				options: {
+					appendTsSuffixTo: [/\.vue$/]
+				}
+			}]
+		}, {
+			test: /\.(ts)?$/,
+			enforce: 'pre',
+			exclude: /node_modules/,
+			use: [{
+				loader: path.join(__dirname, 'pre-tslint-loader.js')
+			}]
+		},
+		{
             test: /\.(gif|png|jpe?g|svg)$/i,
             use: [{
                 loader: 'url-loader',

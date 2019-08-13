@@ -10,7 +10,7 @@
 					</ul>
 				</nav>
 				<div class="userBar">
-					<span class="usrAvatar" :style="`background-image: url('${avatar_url}')`"></span>
+					<span class="usrAvatar" :style="`background-image: url('${avatarUrl}')`"></span>
 					<span class="usrName">{{name}}</span>
 					<span class="logout" @click="logout">logout</span>
 				</div>
@@ -19,22 +19,24 @@
     </div>
 </template>
 
-<script>
-	// import { apiPostSignIn, apiPostSignUp } from '../assets/js/api/api.user'
-	import nImg from '../assets/img/n_img.png'
+<script lang="ts">
+// import Vue from 'vue'
+import { Component, Vue } from 'vue-property-decorator'
+// import { apiPostSignIn, apiPostSignUp } from '../assets/js/api/api.user'
+const nImg = require('@assets/img/n_img.png')
 
-    export default {
-		name: 'Home',
-		data: () => ({
-			name: sessionStorage.getItem('name'),
-			avatar_url: sessionStorage.getItem('avatar_url') || nImg
-		}),
-        methods: {
-			logout() {
-				this.$router.push('/login')
-			}
-        }
-    }
+@Component({
+	name: 'Home'
+})
+export default class Home extends Vue {
+	private avatarUrl: string = sessionStorage.getItem('avatarUrl') || nImg
+	private name: string | null = sessionStorage.getItem('name')
+
+	private logout(): void {
+		this.$router.push('/login')
+	}
+}
+
 </script>
 
 <style scoped lang="less">

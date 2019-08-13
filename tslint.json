@@ -1,0 +1,44 @@
+{
+	"defaultSeverity": "warning",
+	"extends": ["tslint:recommended", "tslint-config-standard"],
+	"linterOptions": {
+		"exclude": ["node_modules/**"]
+	},
+	"rules": {
+		"semicolon": false,
+		"indent": [false, "tabs", 4],
+		"ter-indent": [
+            false,
+            4,
+            {
+                "SwitchCase": 0
+            }
+		],
+		"quotemark": [true, "single"],
+		"interface-name": true,
+		"prefer-for-of": false,
+		"align": false,
+		"trailing-comma": false,
+		"max-line-length": false,
+		"no-consecutive-blank-lines": false,
+		"ordered-imports": false,
+		"object-literal-sort-keys": false,
+		"await-promise": false,
+		"no-console": false,
+		"member-access": true,
+		"member-ordering": false,
+		"no-unnecessary-qualifier": false,
+		"deprecation": false,
+		"only-arrow-functions": false,
+		"no-shadowed-variable": false,
+		"no-empty": false,
+		"no-var-requires": false,
+		"no-floating-promises": false,
+		"strict-type-predicates": false,
+		"no-unnecessary-type-assertion": false,
+		"space-before-function-paren": false
+	},
+	"globals": {
+		"require": true
+	}
+}

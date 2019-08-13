@@ -1,16 +1,15 @@
 module.exports = {
 	root: true,
 	env: {
-		browser: true,
-		node: true
+		'browser': true,
+		'node': true
 	},
 	extends: [
 		'plugin:vue/essential',
-		// https://github.com/standard/standard/blob/master/docs/RULES-en.md
 		'standard'
 	],
 	plugins: [
-		'vue'
+		'node'
 	],
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -33,13 +32,17 @@ module.exports = {
 		// 'object-curly-spacing': 0,
 		// 'no-use-before-define': 0,
 		// 'camelcase': 0,
-		// 'semi': 0, //封号符
+		// 'semi': 0,
 		// 'no-cond-assign': 0,
 		// 'padded-blocks': 0,
 		// 'no-unused-expressions': 0,
 		// 'operator-linebreak': 0
 	},
 	parserOptions: {
-		parser: 'babel-eslint'
+		'parser': 'babel-eslint',
+		'ecmaFeatures': {
+			'jsx': true,
+			'legacyDecorators': true
+		}
 	}
 }

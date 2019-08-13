@@ -14,74 +14,80 @@
     </div>
 </template>
 
-<script>
-    import { apiPostSignIn, apiPostSignUp, apiGetGithubAuthorize, apiGetGithubAccessToken } from '../assets/js/api/api.user'
+<script lang="ts">
+import Vue from 'vue'
+import { apiPostSignIn, apiPostSignUp, apiGetGithubAuthorize, apiGetGithubAccessToken } from '../assets/ts/api/api.user'
 
-    export default {
-		name: 'Login',
-		data: () => ({
-			githubLoading: false,
-			name: '',
-			avatar_url: '',
-			params: {
-				username: '',
-				password: ''
-			}
-		}),
-		created() {
-			if (this.$route.query.code) {
-				this.githubLoading = true
-				this.getGithubAccessToken(this.$route.query)
+interface IRouteQuery {
+	code?: ''
+}
+
+const Login = Vue.extend({
+	name: 'Login',
+	data: () => ({
+		githubLoading: false,
+		name: '',
+		avatarUrl: '',
+		params: {
+			username: '',
+			password: ''
+		}
+	}),
+	created() {
+		if (this.$route.query.code) {
+			this.githubLoading = true
+			this.getGithubAccessToken(this.$route.query)
+		}
+	},
+	methods: {
+		async postSignIn() {
+			const res = await apiPostSignIn(this.params)
+			if (res.data.err) {
+				alert(res.data.errMsg)
+			} else {
+				// alert(res.data.message)
+				sessionStorage.setItem('name', res.data.data.name)
+				sessionStorage.setItem('avatarUrl', res.data.data.avatar_url)
+
+				this.$router.replace('/home')
 			}
 		},
-        methods: {
-            async postSignIn() {
-                const res = await apiPostSignIn(this.params)
-                if (res.data.err) {
-					alert(res.data.errMsg)
-				} else {
-					// alert(res.data.message)
-					sessionStorage.setItem('name', res.data.data.name)
-					sessionStorage.setItem('avatar_url', res.data.data.avatar_url)
+		async postSignUp() {
+			const res = await apiPostSignUp(this.params)
+			if (res.data.err) {
+				alert(res.data.errMsg)
+			} else {
+				sessionStorage.setItem('name', res.data.data.name)
+				sessionStorage.setItem('avatarUrl', res.data.data.avatar_url)
 
-					this.$router.replace('/home')
-				}
-            },
-            async postSignUp() {
-                const res = await apiPostSignUp(this.params)
-                if (res.data.err) {
-					alert(res.data.errMsg)
-				} else {
-					sessionStorage.setItem('name', res.data.data.name)
-					sessionStorage.setItem('avatar_url', res.data.data.avatar_url)
+				this.$router.replace('/home')
+			}
+		},
+		async getGithubAuthorize() {
+			const res = await apiGetGithubAuthorize(this.params)
+			if (res.data.err) {
+				alert(res.data.errMsg)
+			} else {
+				location.href = res.data.redirect_uri
+			}
+		},
+		async getGithubAccessToken(params: IRouteQuery) {
+			const res = await apiGetGithubAccessToken(params)
+			if (res.data.err) {
+				alert(res.data.errMsg)
+			} else {
+				this.name = res.data.userInfo.name
+				this.avatarUrl = res.data.userInfo.avatar_url
 
-					this.$router.replace('/home')
-				}
-			},
-			async getGithubAuthorize() {
-                const res = await apiGetGithubAuthorize(this.params)
-                if (res.data.err) {
-					alert(res.data.errMsg)
-				} else {
-					location.href = res.data.redirect_uri
-				}
-            },
-            async getGithubAccessToken(params) {
-                const res = await apiGetGithubAccessToken(params)
-                if (res.data.err) {
-					alert(res.data.errMsg)
-				} else {
-					this.name = res.data.userInfo.name
-					this.avatar_url = res.data.userInfo.avatar_url
+				sessionStorage.setItem('name', this.name)
+				sessionStorage.setItem('avatarUrl', this.avatarUrl)
 
-					sessionStorage.setItem('name', this.name)
-					sessionStorage.setItem('avatar_url', this.avatar_url)
-
-					this.$router.replace('/home')
-				}
-            }
-        }
-    }
+				this.$router.replace('/home')
+			}
+		}
+	}
+})
+export default Login
 </script>
 
 <style scoped lang="less">

@@ -1,0 +1,46 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "esNext",
+		"strict": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": false,
+		// "jsxFactory": "h",
+		"jsx": "preserve",
+		"allowJs": false, // .d.ts(declare module "xxx" {}) to fix Cannot find module 'xxx'
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"baseUrl": ".",
+		"types": [
+			"node",
+			// "webpack-env"
+		],
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
+		"lib": [
+			"dom",
+			"es5",
+			"es6",
+			"es7",
+			"es2015.promise"
+		]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue"
+	],
+	"exclude": [
+		"node_modules"
+	],
+	"typeRoots": [
+		"./node_modules/@types"
+	]
+}

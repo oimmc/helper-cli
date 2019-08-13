@@ -1,6 +1,6 @@
-# template-vue
+# fe-helper
 
-> 多环境 预加载 自动添加前缀
+> 多环境 预加载 自动添加前缀 typescript
 
 > vue2+ 异步组件 路由
 
@@ -12,7 +12,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:1111
+# serve with hot reload at localhost:1919
 npm run start
 
 # build for production with minification

@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(baseConfig, {
 	mode: 'development',
@@ -10,6 +11,7 @@ module.exports = merge(baseConfig, {
     },
 	devServer: {
 		historyApiFallback: true,
+		stats: 'errors-only',
 		host: 'localhost',
 		port: '1919',
 		hot: true,
@@ -35,6 +37,7 @@ module.exports = merge(baseConfig, {
 		}]
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new FriendlyErrorsWebpackPlugin()
 	]
 })

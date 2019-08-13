@@ -3,9 +3,16 @@
 		"@babel/preset-env"
 	],
 	// "plugins": ["syntax-dynamic-import", "@babel/plugin-transform-runtime"]
-	"plugins": ["syntax-dynamic-import", "@babel/plugin-transform-runtime", ["import", {
-		"libraryName": "ant-design-vue",
-		"libraryDirectory": "es",
-		"style": "css"
-	}]]
+	"plugins": [
+		"syntax-dynamic-import",
+		"@babel/plugin-transform-runtime",
+		[
+			"import",
+			{
+				"libraryName": "ant-design-vue",
+				"libraryDirectory": "es",
+				"style": "css"
+			}
+		]
+	]
 }
