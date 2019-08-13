@@ -13,8 +13,10 @@ module.exports = {
 		'vue'
 	],
 	rules: {
-		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		// 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+		// 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'no-console': 'off',
+		'no-debugger': 'off',
 		'eol-last': 0,
 		'quotes': [1, 'single'],
 		'no-tabs': 0,

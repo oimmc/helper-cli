@@ -5,16 +5,16 @@ Vue.use(Router)
 
 const routes = [{
 	path: '/',
-	redirect: '/welcome'
+	redirect: '/hello'
 }, {
-	path: '/welcome',
-	name: 'welcome',
+	path: '/hello',
+	name: 'Hello',
 	meta: {
-		title: 'Welcome',
+		title: 'Hello',
 		requiresAuth: false
 	},
 	/* eslint-disable-next-line */
-	component: () => import( /* webpackChunkName: 'welcome' */ '../components/Welcome.vue')
+	component: () => import( /* webpackChunkName: 'hello' */ '../components/Hello.vue')
 }, {
 	path: '/home',
 	name: 'home',
@@ -24,15 +24,6 @@ const routes = [{
 	},
 	/* eslint-disable-next-line */
 	component: () => import( /* webpackChunkName: 'home' */ '../views/Home.vue')
-}, {
-	path: '/login',
-	name: 'login',
-	meta: {
-		title: 'Login',
-		requiresAuth: false
-	},
-	/* eslint-disable-next-line */
-	component: () => import( /* webpackChunkName: 'home' */ '../views/Login.vue')
 }]
 
 export default routes

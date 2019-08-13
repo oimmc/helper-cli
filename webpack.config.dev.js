@@ -10,6 +10,7 @@ module.exports = merge(baseConfig, {
     },
 	devServer: {
 		historyApiFallback: true,
+		// stats: 'errors-only',
 		host: 'localhost',
 		port: '1919',
 		hot: true,

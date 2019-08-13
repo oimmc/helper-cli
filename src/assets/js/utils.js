@@ -1,6 +1,4 @@
-export const isNull = str => {
-    return str === '' || str === 'null' || str === null || str === undefined || str === 'undefined'
-}
+export const isNull = str => str === '' || str === 'null' || str === null || str === undefined || str === 'undefined'
 
 export const isEmail = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
 
