@@ -2,7 +2,7 @@
     <div class="home">
 		<img src="../assets/img/logo.png" alt="logo" width="100">
 		<div>
-			Welcome to <a href="https://github.com/wangyajundev/helper-cli" target="_blink">helper-cli</a>
+			{{ params.msg }} <a href="https://github.com/wangyajundev/helper-cli" target="_blink">helper-cli</a>
 		</div>
 		<router-link to="/hello">To hello page</router-link>
     </div>
@@ -13,7 +13,9 @@
     export default {
 		name: 'Home',
 		data: () => ({
-			msg: 'msg'
+			params: {
+				msg: 'Welcome to'
+			}
 		})
     }
 </script>
