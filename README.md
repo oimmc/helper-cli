@@ -1,16 +1,14 @@
 # helper-cli
 
-> 一个前端构建工具
+> Usage:
 
 ``` bash
 
-# install
 npm install helper-cli -g
+
+helper <command> [options]
+
 ```
-
-> Usage:
-
-	helper <command> [options]
 
 
 > Options:
