@@ -1,6 +1,6 @@
 # helper-cli
 
-> Usage:
+## Usage:
 
 ``` bash
 
@@ -11,22 +11,19 @@ helper <command> [options]
 ```
 
 
-> Options:
+## Options:
 
 	-v --version       output the version number
 
 	-h, --help         output usage information
 
 
-> Commands:
-
-	init|i <app-name>  init a new project
-
-
 ## Commands:
 
 ``` bash
+
 # init a new project
+
 init|i <app-name>
 
 ```
