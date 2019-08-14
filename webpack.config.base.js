@@ -108,7 +108,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             hash: false,
             favicon: './static/favicon.ico',
-            title: 'fe-webpack4-vue',
+            title: 'template-vue-ts',
             template: './static/template.ejs',
             filename: 'index.html'
         }),
