@@ -7,8 +7,7 @@
     "start": "npm run dev",
     "dev": "NODE_ENV=development webpack-dev-server --progress --config ./webpack.config.dev.js",
     "build": "NODE_ENV=production webpack --progress --colors --config ./webpack.config.prod.js",
-    "lan": "NODE_ENV=lan webpack --progress --colors --config ./webpack.config.prod.js",
-    "dll": "webpack --config ./webpack.config.dll.js"
+    "lan": "NODE_ENV=lan webpack --progress --colors --config ./webpack.config.prod.js"
   },
   "author": "wangyj",
   "license": "ISC",
