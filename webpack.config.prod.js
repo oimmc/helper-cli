@@ -5,8 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 function resolve(dir) {
     return path.join(__dirname, '.', dir)
@@ -92,14 +94,19 @@ module.exports = merge(baseConfig, {
         },
         minimizer: [
             new OptimizeCssAssetsPlugin({}),
-            new UglifyJsPlugin({
-                sourceMap: true,
-                uglifyOptions: {
-                    ecma: 6,
-                    cache: true,
-                    parallel: true
-                }
-            })
+            // new UglifyJsPlugin({
+            //     sourceMap: true,
+            //     uglifyOptions: {
+            //         ecma: 6,
+            //         cache: true,
+            //         parallel: true
+            //     }
+			// })
+			new TerserPlugin({
+				sourceMap: true,
+				cache: true,
+				parallel: true
+			})
         ]
     },
     plugins: [
@@ -118,6 +125,7 @@ module.exports = merge(baseConfig, {
                 '.gitkeep',
                 'template.ejs'
             ]
-        }])
+		}]),
+		new HardSourceWebpackPlugin()
     ]
 })

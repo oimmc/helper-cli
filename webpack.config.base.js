@@ -32,7 +32,14 @@ module.exports = {
             }
         }, {
             test: /\.(js)$/,
-            loader: 'babel-loader',
+            use: [{
+				loader: 'thread-loader',
+				options: {
+					workers: 3
+				}
+			},
+				'babel-loader'
+			],
             include: [path.join(__dirname, 'src')],
             exclude: [path.join(__dirname, 'node_modules')]
 		}, {
@@ -72,7 +79,7 @@ module.exports = {
                         quality: 75
                     },
                     optipng: {
-                        enabled: true
+                        enabled: false
                     },
                     pngquant: {
                         quality: '65-90',
