@@ -21,7 +21,5 @@
 </script>
 
 <style scoped lang="less">
-	.home {
-		text-align: center;
-	}
+	@import url('./home.css');
 </style>

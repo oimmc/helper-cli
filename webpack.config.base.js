@@ -22,7 +22,7 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.(js|vue|jsx)$/,
+            test: /\.(js|vue)$/,
             loader: 'eslint-loader',
             enforce: 'pre',
             include: [path.resolve(__dirname, 'src')],
@@ -30,24 +30,20 @@ module.exports = {
                 formatter: EslintFriendlyFormatter
             }
         }, {
-            test: /\.js|jsx$/,
-            loader: 'babel-loader',
+            test: /\.js$/,
+            use: [{
+				loader: 'thread-loader',
+				options: {
+					workers: 3
+				}
+			},
+				'babel-loader'
+			],
             include: [path.join(__dirname, 'src')],
             exclude: [path.join(__dirname, 'node_modules')]
-            // options: {
-            //     babelrc: false,
-            //     plugins: [
-            //         'babel-plugin-syntax-dynamic-import'
-            //     ]
-            // }
         }, {
             test: /\.vue$/,
             use: 'vue-loader'
-        }, {
-            enforce: 'pre',
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader'
         }, {
             test: /\.(gif|png|jpe?g|svg)$/i,
             use: [{
@@ -64,7 +60,7 @@ module.exports = {
                         quality: 75
                     },
                     optipng: {
-                        enabled: true
+                        enabled: false
                     },
                     pngquant: {
                         quality: '65-90',
