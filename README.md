@@ -24,6 +24,6 @@ helper <command> [options]
 
 # init a new project
 
-init|i <app-name>
+helper init|i <app-name>
 
 ```
