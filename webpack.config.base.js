@@ -1,28 +1,28 @@
 const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
 const EslintFriendlyFormatter = require('eslint-friendly-formatter')
 
+function assetsPath(_path) {
+    return path.posix.join(process.env.NODE_ENV === 'development' ? './' : '/', _path)
+}
+
 module.exports = {
-    entry: {
-        index: './src/main.js'
-    },
+    entry: './src/index.js',
     output: {
         // publicPath: 'dist',
         filename: '[name].[hash:7].js',
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
-            // vue: 'vue/dist/vue.js',
             assets: path.join(__dirname, 'src/assets')
         }
     },
     module: {
         rules: [{
-            test: /\.(js|vue)$/,
+            test: /\.(js|jsx)$/,
             loader: 'eslint-loader',
             enforce: 'pre',
             include: [path.resolve(__dirname, 'src')],
@@ -30,7 +30,7 @@ module.exports = {
                 formatter: EslintFriendlyFormatter
             }
         }, {
-            test: /\.js$/,
+			test: /\.js|jsx$/,
             use: [{
 				loader: 'thread-loader',
 				options: {
@@ -42,15 +42,12 @@ module.exports = {
             include: [path.join(__dirname, 'src')],
             exclude: [path.join(__dirname, 'node_modules')]
         }, {
-            test: /\.vue$/,
-            use: 'vue-loader'
-        }, {
             test: /\.(gif|png|jpe?g|svg)$/i,
             use: [{
                 loader: 'url-loader',
                 options: {
-                    limit: 100,
-                    name: path.posix.join('./', 'img/[name].[hash:7].[ext]')
+                    limit: 1024 * 1,
+                    name: assetsPath('img/[name].[hash:7].[ext]')
                 }
             }, {
                 loader: 'image-webpack-loader',
@@ -77,7 +74,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: path.posix.join('./', 'media/[name].[hash:7].[ext]')
+                    name: assetsPath('media/[name].[hash:7].[ext]')
                 }
             }
         }, {
@@ -86,24 +83,19 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: path.posix.join('./', 'fonts/[name].[hash:7].[ext]')
+                    name: assetsPath('fonts/[name].[hash:7].[ext]')
                 }
             }
         }]
     },
     plugins: [
-        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             hash: false,
             favicon: './static/favicon.ico',
-            title: 'template-vue',
+            title: 'template-react',
             template: './static/template.ejs',
             filename: 'index.html'
         }),
-        new PreloadWebpackPlugin({
-            // rel: 'prefetch',
-            rel: 'preload',
-            include: 'initial'
-        })
+        new PreloadWebpackPlugin()
     ]
 }

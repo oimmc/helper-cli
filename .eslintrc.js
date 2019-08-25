@@ -5,18 +5,16 @@ module.exports = {
 		node: true
 	},
 	extends: [
-		'plugin:vue/essential',
-		// https://github.com/standard/standard/blob/master/docs/RULES-en.md
-		'standard'
+		'standard',
+		"eslint:recommended",
+    	"plugin:react/recommended"
 	],
 	plugins: [
-		'vue'
+		'react'
 	],
 	rules: {
-		// 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-		// 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-		'no-console': 'off',
-		'no-debugger': 'off',
+		// 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'eol-last': 0,
 		'quotes': [1, 'single'],
 		'no-tabs': 0,
@@ -41,7 +39,12 @@ module.exports = {
 		// 'no-unused-expressions': 0,
 		// 'operator-linebreak': 0
 	},
+	parser: "babel-eslint",
 	parserOptions: {
-		parser: 'babel-eslint'
+		parser: 'babel-eslint',
+		"ecmaFeatures": {
+			"jsx": true
+		}
 	}
+	
 }

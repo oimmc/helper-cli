@@ -5,29 +5,18 @@ const baseConfig = require('./webpack.config.base')
 module.exports = merge(baseConfig, {
 	mode: 'development',
 	devtool: 'inline-source-map',
-	output: {
-        publicPath: '/'
-    },
 	devServer: {
 		historyApiFallback: true,
-		// stats: 'errors-only',
+		stats: 'errors-only',
 		host: 'localhost',
 		port: '1919',
-		hot: true,
-		open: false,
-		proxy: {
-            '/api': {
-                target: 'http://localhost:2019',
-                ws: true,
-                changeOrigin: true
-            }
-        }
+		hot: true
 	},
 	module: {
 		rules: [{
 			test: /\.css$/,
 			use: [
-				'vue-style-loader',
+				'style-loader',
 				'css-loader'
 			]
 		}, {

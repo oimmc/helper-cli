@@ -1,10 +1,6 @@
-# template-vue
+# FE-webpack4-react
 
 > 多环境 预加载 自动添加前缀
-
-> vue2+ 异步组件 路由
-
-> axios的封装
 
 ## Build Setup
 
@@ -12,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:1919
+# serve with hot reload at localhost:8008
 npm run start
 
 # build for production with minification
