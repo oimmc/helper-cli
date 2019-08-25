@@ -1,4 +1,4 @@
-# FE-webpack4-react
+# template-react
 
 > 多环境 预加载 自动添加前缀
 
@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8008
+# serve with hot reload at localhost:1919
 npm run start
 
 # build for production with minification
