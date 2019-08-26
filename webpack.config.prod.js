@@ -22,7 +22,7 @@ switch (process.env.NODE_ENV) {
 		baseUrl = '/'
 		break
 	case 'lan':
-		baseUrl = 'www.baidu.com'
+		baseUrl = 'https://github.com/'
 		break
 	default:
 		baseUrl = ''
@@ -57,7 +57,8 @@ module.exports = merge(baseConfig, {
 						minimize: true
 					}
 				},
-				'css-loader'
+				'css-loader',
+				'postcss-loader'
 			]
 		}, {
 			test: /\.less$/,
